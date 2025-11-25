@@ -142,6 +142,16 @@ export interface PracticeScenario {
   hints: string[];
 }
 
+export interface Teacher {
+  id: string;
+  name: string;
+  role: string;
+  image: string;
+  studies: string;
+  experience: string;
+  specialties: string[];
+}
+
 export interface NavProps {
   currentView: ViewState;
   onNavigate: (view: ViewState, params?: any) => void;
