@@ -1,5 +1,5 @@
 
-import { Course, LearningPath, Module, Quiz, ForumThread, Badge, User, Grade, PracticeScenario, Currency } from './types';
+import { Course, LearningPath, Module, Quiz, ForumThread, Badge, User, Grade, PracticeScenario, Currency, Teacher } from './types';
 
 // Currencies ordered: USD, PEN, then alphabetical Hispanic American
 export const CURRENCIES: Currency[] = [
@@ -273,3 +273,60 @@ export const MOCK_QUIZ: Quiz = {
     }
   ]
 };
+
+export const MOCK_TEACHERS: Teacher[] = [
+  {
+    id: 't1',
+    name: 'Dra. Sarah Connor',
+    role: 'Lead AI Researcher',
+    image: 'https://picsum.photos/400/400?random=101',
+    studies: 'PhD en Ciencias de la Computación, MIT',
+    experience: '10+ años en investigación de Redes Neuronales y Deep Learning en Google Brain.',
+    specialties: ['Deep Learning', 'Computer Vision', 'PyTorch']
+  },
+  {
+    id: 't2',
+    name: 'Guido van Rossum (Clon IA)',
+    role: 'Senior Python Architect',
+    image: 'https://picsum.photos/400/400?random=102',
+    studies: 'MSc en Matemáticas y Ciencias de la Computación',
+    experience: 'Creador del lenguaje Python. Trabajó en Google y Dropbox.',
+    specialties: ['Python', 'Language Design', 'Software Architecture']
+  },
+  {
+    id: 't3',
+    name: 'Andrew Ng',
+    role: 'Co-founder Coursera & DeepLearning.AI',
+    image: 'https://picsum.photos/400/400?random=103',
+    studies: 'PhD en Machine Learning, UC Berkeley',
+    experience: 'Profesor en Stanford, fundó Google Brain y fue Chief Scientist en Baidu.',
+    specialties: ['Machine Learning', 'AI Strategy', 'Education']
+  },
+  {
+    id: 't4',
+    name: 'Sarah Drasner',
+    role: 'VP of Developer Experience',
+    image: 'https://picsum.photos/400/400?random=104',
+    studies: 'MFA, Scientific Illustration',
+    experience: 'Lideró equipos de ingeniería en Netlify, Microsoft y Google.',
+    specialties: ['Vue.js', 'CSS Animation', 'Engineering Management']
+  },
+  {
+    id: 't5',
+    name: 'Kirill Eremenko',
+    role: 'Data Science Educator',
+    image: 'https://picsum.photos/400/400?random=105',
+    studies: 'Physics & Mathematics Background',
+    experience: 'Fundador de SuperDataScience. Ha enseñado a más de 2M de estudiantes.',
+    specialties: ['Data Science', 'Tableau', 'Business Intelligence']
+  },
+  {
+    id: 't6',
+    name: 'Lee Robinson',
+    role: 'VP of Product at Vercel',
+    image: 'https://picsum.photos/400/400?random=106',
+    studies: 'Computer Engineering, Iowa State',
+    experience: 'Experto en React, Next.js y Serverless. Contribuidor open source.',
+    specialties: ['Next.js', 'React', 'Frontend Infrastructure']
+  }
+];
