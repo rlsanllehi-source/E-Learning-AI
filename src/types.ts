@@ -26,6 +26,9 @@ export interface User {
   status: 'active' | 'banned';
   phone?: string;
   avatar?: string;
+  profilePicture?: string; 
+  isLoggedIn: boolean;
+}
   preferences?: {
     theme: 'light' | 'dark';
     notifications: boolean;
