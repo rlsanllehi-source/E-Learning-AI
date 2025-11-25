@@ -1,28 +1,27 @@
-import React, { ReactNode } from 'react';
+
+import React from 'react';
+import { X } from 'lucide-react';
 
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
   title: string;
-  children: ReactNode;
+  children: React.ReactNode;
 }
 
 export const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, children }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white p-6 rounded-lg shadow-xl max-w-lg w-full">
-        <div className="flex justify-between items-center mb-4">
-          <h3 className="text-xl font-bold">{title}</h3>
-          <button 
-            onClick={onClose} 
-            className="text-gray-500 hover:text-gray-800 text-2xl font-semibold"
-          >
-            &times;
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/50 backdrop-blur-sm p-4 animate-in fade-in">
+      <div className="bg-white rounded-xl shadow-2xl w-full max-w-md overflow-hidden animate-in zoom-in-95">
+        <div className="flex justify-between items-center p-4 border-b border-slate-100">
+          <h3 className="text-lg font-bold text-slate-900">{title}</h3>
+          <button onClick={onClose} className="text-slate-400 hover:text-slate-600 transition-colors">
+            <X size={20} />
           </button>
         </div>
-        <div>
+        <div className="p-4">
           {children}
         </div>
       </div>
