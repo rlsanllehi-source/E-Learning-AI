@@ -1,33 +1,48 @@
-import React, { createContext, useState, useContext, ReactNode } from 'react';
 
-// 1. Define el tipo de valor que tendrá el contexto (state + functions)
+import React, { createContext, useContext, useState, ReactNode } from 'react';
+import { Currency } from '../types';
+import { CURRENCIES } from '../constants';
+
 interface CurrencyContextType {
-  currency: string;
-  setCurrency: (currency: string) => void;
+  currentCurrency: Currency;
+  setCurrencyCode: (code: string) => void;
+  formatPrice: (priceInUSD: number) => string;
 }
 
-// 2. Crea el Contexto
 const CurrencyContext = createContext<CurrencyContextType | undefined>(undefined);
 
-// 3. Define el Provider (el componente que envuelve a la app)
-interface CurrencyProviderProps {
-  children: ReactNode;
-}
+export const CurrencyProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+  const [currentCurrency, setCurrentCurrency] = useState<Currency>(CURRENCIES[0]); // Default to USD
 
-export const CurrencyProvider: React.FC<CurrencyProviderProps> = ({ children }) => {
-  const [currency, setCurrency] = useState<string>('USD');
+  const setCurrencyCode = (code: string) => {
+    const currency = CURRENCIES.find(c => c.code === code);
+    if (currency) {
+      setCurrentCurrency(currency);
+    }
+  };
+
+  const formatPrice = (priceInUSD: number) => {
+    const convertedPrice = priceInUSD * currentCurrency.rate;
+    
+    // Format logic: use generic locale but with specific symbol logic
+    return new Intl.NumberFormat('es-LA', {
+      style: 'currency',
+      currency: currentCurrency.code,
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    }).format(convertedPrice);
+  };
 
   return (
-    <CurrencyContext.Provider value={{ currency, setCurrency }}>
+    <CurrencyContext.Provider value={{ currentCurrency, setCurrencyCode, formatPrice }}>
       {children}
     </CurrencyContext.Provider>
   );
 };
 
-// 4. Hook para consumir el contexto (opcional, pero buena práctica)
 export const useCurrency = () => {
   const context = useContext(CurrencyContext);
-  if (context === undefined) {
+  if (!context) {
     throw new Error('useCurrency must be used within a CurrencyProvider');
   }
   return context;
