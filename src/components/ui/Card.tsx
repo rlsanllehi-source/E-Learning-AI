@@ -1,38 +1,31 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 
-interface CardComponentProps {
-  children: ReactNode;
+interface CardProps {
+  children: React.ReactNode;
   className?: string;
+  hoverEffect?: boolean;
 }
 
-export const Card: React.FC<CardComponentProps> = ({ children, className }) => {
+export const Card: React.FC<CardProps> = ({ children, className = '', hoverEffect = false }) => {
   return (
-    <div className={`bg-white rounded-lg shadow-md ${className || ''}`}>
+    <div className={`
+      bg-white rounded-xl border border-slate-100 shadow-sm overflow-hidden
+      ${hoverEffect ? 'transition-all duration-300 hover:shadow-lg hover:-translate-y-1' : ''}
+      ${className}
+    `}>
       {children}
     </div>
   );
 };
 
-export const CardHeader: React.FC<CardComponentProps> = ({ children, className }) => {
-  return (
-    <div className={`p-4 border-b border-gray-200 text-lg font-semibold ${className || ''}`}>
-      {children}
-    </div>
-  );
-};
+export const CardHeader: React.FC<{ children: React.ReactNode; className?: string }> = ({ children, className = '' }) => (
+  <div className={`p-6 ${className}`}>{children}</div>
+);
 
-export const CardContent: React.FC<CardComponentProps> = ({ children, className }) => {
-  return (
-    <div className={`p-4 ${className || ''}`}>
-      {children}
-    </div>
-  );
-};
+export const CardContent: React.FC<{ children: React.ReactNode; className?: string }> = ({ children, className = '' }) => (
+  <div className={`p-6 pt-0 ${className}`}>{children}</div>
+);
 
-export const CardFooter: React.FC<CardComponentProps> = ({ children, className }) => {
-  return (
-    <div className={`p-4 border-t border-gray-200 ${className || ''}`}>
-      {children}
-    </div>
-  );
-};
+export const CardFooter: React.FC<{ children: React.ReactNode; className?: string }> = ({ children, className = '' }) => (
+  <div className={`p-6 pt-0 flex items-center ${className}`}>{children}</div>
+);
