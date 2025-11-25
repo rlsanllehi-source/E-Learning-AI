@@ -1,12 +1,11 @@
 import React from 'react';
 
 interface ProgressBarProps {
-  progress: number; // Valor entre 0 y 100
+  progress: number;
   className?: string;
 }
 
 export const ProgressBar: React.FC<ProgressBarProps> = ({ progress, className }) => {
-  // Aseguramos que el progreso esté entre 0 y 100
   const widthStyle = Math.max(0, Math.min(100, progress)) + '%';
   
   return (
