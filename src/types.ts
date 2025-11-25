@@ -160,3 +160,6 @@ export interface NavProps {
   onNavigate: (view: ViewState, params?: any) => void;
   currentUser?: User;
 }
+
+export type UserRole = 'student' | 'teacher' | 'admin';
+}
